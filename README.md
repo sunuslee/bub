@@ -22,10 +22,11 @@ any file in your machines, so that you don't have to manually copy those file to
        * that directory will be sync by the cloud storage itself, **not bub**
        * examples:
           
-             #dropbox
-             CLOUD_DRIVER_ROOT="/Users/sunus/Dropbox/MacBook"
-             #yunio
-             CLOUD_DRIVER_ROOT="/Users/sunus/Youio/MacBook"
+                #dropbox
+                CLOUD_DRIVER_ROOT="/Users/sunus/Dropbox/MacBook"
+                #yunio
+                CLOUD_DRIVER_ROOT="/Users/sunus/Youio/MacBook"
+
    3. give bub executeable premission.
            
            chmod +x bub 
