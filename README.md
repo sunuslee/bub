@@ -26,7 +26,11 @@ any file in your machines, so that you don't have to manually copy those file to
              CLOUD_DRIVER_ROOT="/Users/sunus/Dropbox/MacBook"
              #yunio
              CLOUD_DRIVER_ROOT="/Users/sunus/Youio/MacBook"
-   3. save the changes and copy hub to your $PATH, eg(/usr/bin)
+   3. give bub executeable premission.
+           
+           chmod +x bub 
+   
+   4. save the changes and copy hub to your $PATH, eg(/usr/bin)
         
           sudo cp bub /usr/bin
 
