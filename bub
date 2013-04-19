@@ -35,6 +35,11 @@ function help() {
     echo  "-h Show this help and exit"
 }
 
+
+# take only ABSOLUTE PATH as $1
+# return absolute path for $1
+# this function is not validating $1 at all!
+
 function get_abspath() {
     if [[ $1 = /* ]]; then
         echo "$1"
@@ -43,9 +48,6 @@ function get_abspath() {
     fi
 }
 
-# take only ABSOLUTE PATH as $1
-# return absolute path for $1
-# this function is not validating $1 at all!
 
 function backup() {
     dir="$(dirname "$1")"
@@ -58,6 +60,7 @@ function backup() {
         echo "Back up file $file Fail"
     fi
 }
+
 
 function main() {
     if [ ! -d "$CLOUD_DRIVER_ROOT" ]; then
