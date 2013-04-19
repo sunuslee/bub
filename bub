@@ -50,6 +50,7 @@ function get_abspath() {
 
 
 function backup() {
+    file="$(basename "$1")"
     dir="$(dirname "$1")"
     dst="$CLOUD_DRIVER_ROOT/$dir"
     mkdir -p "$dst"
