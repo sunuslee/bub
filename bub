@@ -22,8 +22,10 @@
 #        OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #        WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#DEBUG:
+#set -x
+
 CLOUD_DRIVER_ROOT="/Users/sunus/Dropbox/MacBook"
-CWD=$PWD
 
 function help() {
     echo  "Usage: bub option path1 path2 ..."
@@ -33,18 +35,23 @@ function help() {
     echo  "-h Show this help and exit"
 }
 
+function get_abspath() {
+    if [[ $1 = /* ]]; then
+        echo "$1"
+    else
+        echo "$(pwd)/$1"
+    fi
+}
+
+# take only ABSOLUTE PATH as $1
+# return absolute path for $1
+# this function is not validating $1 at all!
+
 function backup() {
-    cwd=`pwd`
-    file="$1/$2"
-    echo "Backing up $file..."
-    cd $CLOUD_DRIVER_ROOT
-    t="$1"
-    t=${t:1}
-    # move to new root $CLOUD_DRIVER_ROOT
-    mkdir -p "$t"
-    cd "$cwd"
-    cd "$1"
-    cp -rf "$2" "$CLOUD_DRIVER_ROOT/$t/"
+    dir="$(dirname "$1")"
+    dst="$CLOUD_DRIVER_ROOT/$dir"
+    mkdir -p "$dst"
+    cp -vrf "$1" "$dst"
     if [ $? -eq 0 ]; then
         echo "Back up file $file OK"
     else
@@ -65,19 +72,12 @@ function main() {
     elif [ "$1" == "-s" ]; then
         shift
         for target in "$@"; do
+            target="$(get_abspath "$target")"
             echo "Processing target: "$target""
-            cd $CWD
             if [ -d "$target" ]; then
-                cd "$target"
-                cwd=`pwd`
-                upper_dir=${cwd%/*}
-                backup "$upper_dir" "$target"
+                backup "$target"
             elif [ -f "$target" ]; then
-                dir=`dirname $target`
-                cd $dir
-                upper_dir=`pwd`
-                target=$(basename $target)
-                backup "$upper_dir" "$target"
+                backup "$target"
             else
                 echo "Unsupport file $target"
             fi
