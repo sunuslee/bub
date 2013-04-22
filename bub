@@ -54,7 +54,7 @@ function backup() {
     dir="$(dirname "$1")"
     dst="$CLOUD_DRIVER_ROOT/$dir"
     mkdir -p "$dst"
-    cp -vrf "$1" "$dst"
+    cp -rf "$1" "$dst"
     if [ $? -eq 0 ]; then
         echo "Back up file $file OK"
     else
