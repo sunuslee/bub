@@ -30,7 +30,7 @@ CLOUD_DRIVER_ROOT="/Users/sunus/Dropbox/MacBook"
 function help() {
     echo  "Usage: bub option path1 path2 ..."
     echo  "options:"
-    echo  "-s Use to selete custome file/directories. do not copy the full path and parent directory"
+    echo  "-s Use to selete custome file/directories. This will copy the full path and parent directory to Dropbox Directory"
     echo  "-i Normal Dropbox mode, just copy to Dropbox directory. same as cp"
     echo  "-h Show this help and exit"
 }
